@@ -1,0 +1,302 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: #f5f0e8;
+    color: #2c1810;
+}
+
+h1,
+h2 {
+    font-family: 'Playfair Display', serif;
+}
+
+/* ========== HEADER ========== */
+
+header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 28px;
+    background-color: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(8px);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+header img {
+    height: 48px;
+    width: auto;
+}
+
+.header-texto p {
+    color: #f5e6d3;
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.header-texto p:first-child {
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* ========== FORMULARIO ========== */
+#seccion-formulario {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #DAA520 100%);
+    padding: 40px 20px;
+    padding-top: 100px;
+}
+
+#seccion-formulario h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#seccion-formulario p {
+    color: #f5e6d3;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+#formulario-visitante {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 16px;
+    padding: 40px;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#formulario-visitante label {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 4px;
+    display: block;
+}
+
+#formulario-visitante select {
+    width: 100%;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #fff8f0;
+    color: #2c1810;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+#formulario-visitante button {
+    margin-top: 10px;
+    padding: 14px;
+    background-color: #DAA520;
+    color: #2c1810;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+#formulario-visitante button:hover {
+    background-color: #f5c842;
+}
+
+/* ========== MONUMENTO ========== */
+#seccion-monumento {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    padding-top: 60px;
+}
+
+#seccion-monumento h1 {
+    font-size: 2rem;
+    color: #8B4513;
+    margin-bottom: 24px;
+    text-align: center;
+    border-bottom: 3px solid #DAA520;
+    padding-bottom: 12px;
+}
+
+#seccion-monumento img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.info-general {
+    background-color: #e8dcc8;
+    border-left: 5px solid #8B4513;
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+}
+
+.info-general p {
+    margin-bottom: 6px;
+    font-size: 1rem;
+}
+
+#seccion-monumento h2 {
+    font-size: 1.4rem;
+    color: #8B4513;
+    margin-bottom: 10px;
+    margin-top: 24px;
+}
+
+#seccion-monumento p {
+    line-height: 1.8;
+    font-size: 1rem;
+    color: #3d2010;
+}
+
+/* ========== TRANSICIONES ========== */
+#seccion-formulario,
+#seccion-monumento {
+    transition: opacity 0.5s ease;
+}
+
+.desvanecer {
+    opacity: 0;
+}
+
+/* ========== UTILIDAD ========== */
+.oculto {
+    display: none !important;
+}
+
+
+/* ========== SELECT PERSONALIZADO ========== */
+.select-custom {
+    position: relative;
+    width: 100%;
+    font-family: 'Lato', sans-serif;
+}
+
+.select-selected {
+    padding: 12px 16px;
+    background-color: #fff8f0;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #2c1810;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background 0.2s;
+}
+
+.select-selected::after {
+    content: '▾';
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+}
+
+.select-selected.abierto::after {
+    transform: rotate(180deg);
+}
+
+.select-opciones {
+    position: absolute;
+    top: 110%;
+    left: 0;
+    width: 100%;
+    background-color: #fff8f0;
+    border-radius: 8px;
+    list-style: none;
+    z-index: 200;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    animation: desplegar 0.25s ease;
+}
+
+@keyframes desplegar {
+    from {
+        opacity: 0;
+        transform: translateY(-8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.select-opciones li {
+    padding: 12px 16px;
+    cursor: pointer;
+    font-size: 1rem;
+    color: #2c1810;
+    transition: background 0.2s;
+}
+
+.select-opciones li:hover {
+    background-color: #DAA520;
+    color: #fff;
+}
+
+.select-opciones li.seleccionado {
+    background-color: #8B4513;
+    color: #fff;
+}
+
+/* ========== RESPONSIVE MÓVIL ========== */
+@media (max-width: 600px) {
+
+    header {
+        padding: 10px 16px;
+    }
+
+    header img {
+        height: 36px;
+    }
+
+    .header-texto p:first-child {
+        font-size: 0.85rem;
+    }
+
+    #seccion-formulario {
+        padding: 100px 16px 40px;
+    }
+
+    #seccion-formulario h1 {
+        font-size: 1.8rem;
+    }
+
+    #formulario-visitante {
+        padding: 24px 16px;
+    }
+
+    #seccion-monumento {
+        padding: 80px 16px 40px;
+    }
+
+    #seccion-monumento h1 {
+        font-size: 1.4rem;
+    }
+
+    #seccion-monumento h2 {
+        font-size: 1.1rem;
+    }
+}

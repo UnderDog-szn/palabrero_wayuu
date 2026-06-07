@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monumento al palabrero Wayúu</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <header>
+        <img src="img/logoUniguajira.png" alt="Universidad de La Guajira">
+        <div class="header-texto">
+            <p>Universidad de La Guajira</p>
+            <p>Ingeniería de Sistemas</p>
+        </div>
+    </header>
+
+    <!-- Sección 1: Formulario -->
+    <section id="seccion-formulario">
+        <h1>Bienvenido</h1>
+        <p>Antes de continuar, completa el siguiente formulario (El formulario es anónimo)</p>
+        <form id="formulario-visitante">
+
+            <div class="select-custom">
+                <div class="select-selected">-- Selecciona --</div>
+                <ul class="select-opciones oculto">
+                    <li data-value="">-- Selecciona --</li>
+                    <li data-value="menor18">Menor de 18 años</li>
+                    <li data-value="18-25">18 a 25 años</li>
+                    <li data-value="26-35">26 a 35 años</li>
+                    <li data-value="36-45">36 a 45 años</li>
+                    <li data-value="46-60">46 a 60 años</li>
+                    <li data-value="mayor60">Mayor de 60 años</li>
+                </ul>
+                <input type="hidden" name="edad">
+            </div>
+
+            <label>Procedencia:</label>
+            <div class="select-custom">
+                <div class="select-selected">-- Selecciona --</div>
+                <ul class="select-opciones oculto">
+                    <li data-value="">-- Selecciona --</li>
+                    <li data-value="riohacha">Riohacha</li>
+                    <li data-value="otro-guajira">Otro municipio de La Guajira</li>
+                    <li data-value="otro-colombia">Otro departamento de Colombia</li>
+                    <li data-value="extranjero">Extranjero</li>
+                </ul>
+                <input type="hidden" name="procedencia">
+            </div>
+
+            <label>Tipo de visitante:</label>
+            <div class="select-custom">
+                <div class="select-selected">-- Selecciona --</div>
+                <ul class="select-opciones oculto">
+                    <li data-value="">-- Selecciona --</li>
+                    <li data-value="turista">Turista</li>
+                    <li data-value="residente">Residente</li>
+                    <li data-value="estudiante">Estudiante</li>
+                    <li data-value="investigador">Investigador</li>
+                    <li data-value="otro">Otro</li>
+                </ul>
+                <input type="hidden" name="tipo_visitante">
+            </div>
+
+            <button type="submit">Ver información del monumento</button>
+
+        </form>
+    </section>
+
+    <!-- Sección 2: Información del monumento -->
+    <section id="seccion-monumento" class="oculto">
+        <h1>Monumento al Palabrero Wayúu (Putchipuu)</h1>
+        <img src="img/img_putchipuu.jpg" alt="Monumento al Palabrero Wayúu">
+
+        <div class="info-general">
+            <p><strong>Ubicación: </strong>Riohacha, La Guajira, Colombia</p>
+            <p><strong>Autor: </strong>Por Investigar</p>
+            <p><strong>Año: </strong>Por Investigar</p>
+        </div>
+
+        <div class="reseña">
+            <h2>Reseña Histórica</h2>
+            <p>El Palabrero Wayúu, conocido en lengua wayuunaiki como <em>Putchipuu</em>, es una figura fundamental
+                dentro de la cultura del pueblo Wayúu. Su rol es mediar y resolver conflictos entre clanes mediante el
+                diálogo y la palabra</p>
+        </div>
+
+        <div class="significado">
+            <h2>Significado Cultural</h2>
+            <p>En 2010, la UNESCO declaró el sistema normativo Wayúu aplicado por el Palabrero como Patrimonio Cultural
+                Inmaterial de la Humanidad, reconociendo su valor universal como sistema de justicia en la palabra.</p>
+        </div>
+
+        <div class="importancia">
+            <h2>Importancia para Riohacha y La Guajira</h2>
+            <p>Este monumento representa la identidad cultural del pueblo Wayúu y su legado de resolución pacífica de
+                conflictos, siendo un símbolo vivo de la diversidad cultural de La Guajira.</p>
+        </div>
+    </section>
+
+    <script src="js/main.js"></script>
+
+</body>
+
+</html>
