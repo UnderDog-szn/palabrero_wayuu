@@ -8,6 +8,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400;700&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/styles.css">
 </head>
 
@@ -21,13 +22,17 @@
         </div>
     </header>
 
+    <!-- Sistema de Notificaciones Toast -->
+    <div id="toast-container"></div>
+
     <!-- Sección 1: Formulario -->
     <section id="seccion-formulario">
         <h1>Bienvenido</h1>
         <p>Antes de continuar, completa el siguiente formulario (El formulario es anónimo)</p>
         <form id="formulario-visitante">
 
-            <div class="select-custom">
+            <label>Rango de edad:</label>
+            <div class="select-custom" data-field="edad">
                 <div class="select-selected">-- Selecciona --</div>
                 <ul class="select-opciones oculto">
                     <li data-value="">-- Selecciona --</li>
@@ -39,10 +44,11 @@
                     <li data-value="mayor60">Mayor de 60 años</li>
                 </ul>
                 <input type="hidden" name="edad">
+                <div class="validacion-icon"></div>
             </div>
 
             <label>Procedencia:</label>
-            <div class="select-custom">
+            <div class="select-custom" data-field="procedencia">
                 <div class="select-selected">-- Selecciona --</div>
                 <ul class="select-opciones oculto">
                     <li data-value="">-- Selecciona --</li>
@@ -52,10 +58,11 @@
                     <li data-value="extranjero">Extranjero</li>
                 </ul>
                 <input type="hidden" name="procedencia">
+                <div class="validacion-icon"></div>
             </div>
 
             <label>Tipo de visitante:</label>
-            <div class="select-custom">
+            <div class="select-custom" data-field="tipo_visitante">
                 <div class="select-selected">-- Selecciona --</div>
                 <ul class="select-opciones oculto">
                     <li data-value="">-- Selecciona --</li>
@@ -66,9 +73,10 @@
                     <li data-value="otro">Otro</li>
                 </ul>
                 <input type="hidden" name="tipo_visitante">
+                <div class="validacion-icon"></div>
             </div>
 
-            <button type="submit">Ver información del monumento</button>
+            <button type="submit" id="btn-submit">Ver información del monumento</button>
 
         </form>
     </section>
@@ -76,7 +84,18 @@
     <!-- Sección 2: Información del monumento -->
     <section id="seccion-monumento" class="oculto">
         <h1>Monumento al Palabrero Wayúu (Putchipuu)</h1>
-        <img src="img/img_putchipuu.jpg" alt="Monumento al Palabrero Wayúu">
+        <div class="carrusel">
+            <button class="carrusel-btn izquierda">&#8249;</button>
+            <img id="carrusel-img" src="img/Alejado.jpeg" alt="Monumento al Palabrero Wayúu">
+            <button class="carrusel-btn derecha">&#8250;</button>
+            <div class="carrusel-puntos">
+                <span class="punto activo"></span>
+                <span class="punto"></span>
+                <span class="punto"></span>
+                <span class="punto"></span>
+                <span class="punto"></span>
+            </div>
+        </div>
 
         <div class="info-general">
             <p><strong>Ubicación: </strong>Riohacha, La Guajira, Colombia</p>
@@ -102,8 +121,51 @@
             <p>Este monumento representa la identidad cultural del pueblo Wayúu y su legado de resolución pacífica de
                 conflictos, siendo un símbolo vivo de la diversidad cultural de La Guajira.</p>
         </div>
+
+        <!-- Quiz Interactivo -->
+        <div id="seccion-quiz" class="quiz-container">
+            <h2>¿Cuánto sabes sobre la cultura Wayúu?</h2>
+            <p class="quiz-intro">Pon a prueba tus conocimientos con este pequeño quiz</p>
+            
+            <div id="quiz-preguntas"></div>
+            
+            <button id="btn-enviar-quiz" class="btn-quiz">Enviar Respuestas</button>
+            <div id="quiz-resultado" class="oculto"></div>
+        </div>
+
+        <!-- Mapa Interactivo con Dijkstra -->
+        <div id="seccion-mapa" class="mapa-container">
+            <h2>Explora los Monumentos de Riohacha</h2>
+            <p class="mapa-intro">Descubre las mejores rutas entre los sitios turísticos de la ciudad usando el algoritmo de Dijkstra</p>
+            
+            <div class="controles-mapa">
+                <div class="control-seleccion">
+                    <label for="origen">Punto de salida:</label>
+                    <select id="origen" class="select-ubicacion">
+                        <option value="">-- Selecciona --</option>
+                    </select>
+                </div>
+                <div class="control-seleccion">
+                    <label for="destino">Punto de destino:</label>
+                    <select id="destino" class="select-ubicacion">
+                        <option value="">-- Selecciona --</option>
+                    </select>
+                </div>
+                <button id="btn-calcular-ruta" class="btn-mapa">Calcular Ruta</button>
+                <div id="info-distancia" class="info-distancia oculto"></div>
+            </div>
+            
+            <div id="mapa" class="mapa-leaflet"></div>
+            
+            <div id="detalles-ruta" class="detalles-ruta oculto">
+                <h3>Ruta Calculada</h3>
+                <div id="pasos-ruta"></div>
+                <div id="estadisticas-ruta"></div>
+            </div>
+        </div>
     </section>
 
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
 
 </body>
